@@ -27,8 +27,8 @@ body {
     background-image: 
         linear-gradient(
             to right bottom,
-            rgba(126,213,111,0.8),
-            rgba(40,180,131,0.9)) ,
+            rgba(126,213,111,0.5),
+            rgba(40,180,131,1)) ,
         url('../img/hero.jpg');
     background-size: cover;
     background-position: top;
@@ -58,6 +58,8 @@ body {
     color: #fff;
     text-transform: uppercase;
 
+    /* Fix for animation shaking */
+    backface-visibility: hidden;
 }
 
 .heading-primary-main {
@@ -65,6 +67,16 @@ body {
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    animation-name: moveInLeft;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 2;
+
+    /*
+    animation-iteration-count: 2;
+    animation-timing-function: ease-in-out;
+    animation-delay: 2s;
+    */
 }
 
 .heading-primary-sub {
@@ -72,4 +84,43 @@ body {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 17.4px;
+    /*shortcut for animation elements*/
+    animation: moveInRight 3s ease-out;
+    animation-iteration-count: 2;
+    /*
+    animation-name: moveInRight;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+    */
+}
+
+/* Animations for headers */
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    80% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    80% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
 }
