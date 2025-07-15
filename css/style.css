@@ -52,14 +52,14 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .heading-primary {
     color: #fff;
     text-transform: uppercase;
-
-    /* Fix for animation shaking */
-    backface-visibility: hidden;
+    backface-visibility: hidden; /* Fix for animation shaking */
+    margin-bottom: 40px;
 }
 
 .heading-primary-main {
@@ -123,4 +123,40 @@ body {
         opacity: 1;
         transform: translateX(0px);
     }
+}
+
+/*Butonu ortalamak gibi basit bir çözüm için absolute positioning
+veya transform'lar kullanmak overkill olur*/
+/* Çözüm:
+- Yukarıdaki text-box'a text-align: center ekledik 
+- .heading-primary'e margin-bottom: 60px; ekledik
+*/
+.btn:link ,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px; /*top bottom */
+    /*padding with 4 variable -> top right bottom left*/
+    display: inline-block;
+    border-radius: 100px;
+
+    /*animasyon yaratmanın 2. yolu sadece aşağıdakini eklemektir
+    1.yolu zaten daha önce yaptık headerlarda ki bu daha karmaşık olanıydı*/
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    /*box-shadow: offsetx ,offsety ,blur, spread radius, color */
+    box-shadow: 0 5px 10px rgb(0,0,0,.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+
 }
