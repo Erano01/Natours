@@ -125,6 +125,18 @@ body {
     }
 }
 
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 /*Butonu ortalamak gibi basit bir çözüm için absolute positioning
 veya transform'lar kullanmak overkill olur*/
 /* Çözüm:
@@ -143,6 +155,7 @@ veya transform'lar kullanmak overkill olur*/
     /*animasyon yaratmanın 2. yolu sadece aşağıdakini eklemektir
     1.yolu zaten daha önce yaptık headerlarda ki bu daha karmaşık olanıydı*/
     transition: all 0.2s;
+    position: relative; /*Pseudo element için gerekli*/
 }
 
 .btn:hover {
@@ -158,5 +171,32 @@ veya transform'lar kullanmak overkill olur*/
 .btn-white {
     background-color: #fff;
     color: #777;
+}
 
+/*pseudo element ve animasyonu(2 different animation) (sözde elemanlar)*/
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /*Z-index ile butonun arkasına alıyoruz*/
+    transition: all .4s;
+}
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+/*second animation button pop-up animation*/
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
 }
