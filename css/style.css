@@ -7,19 +7,28 @@ Dark green: #28b485
 
 */
 
-* { /* Universal Selector, for resetting */
+*,
+*::after,
+*::before { /* Universal Selector, for resetting */
     margin: 0;
     padding: 0;
-    box-sizing: border-box; 
+    box-sizing: inherit; /* Box-sizing özelliğini tüm elementlere uygula */
+}
+
+html {
+    /* css cascade özelliği kullanıyoruz, font-size diğer elementlerde kullanılacak.*/
+    /* 1rem = 16px (default browser settings - eğer isterse değiştirebilir), diğer elementlerde rem kullanılacak */
+    /* user origin'den gelen browser setting'leri kullanıyoruz*/
+    font-size: 62.5%; /* 10/16 = 0.625*/ 
 }
 
 body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 16px;
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3rem;
+    box-sizing: border-box; 
 }
 
 .header {
@@ -38,12 +47,12 @@ body {
 
 .logo-box {
     position: absolute; /* Absolute konumlandırma, header içinde logo-box'ı konumlandırmak için */
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo {
-    height: 35px;
+    height: 3.5rem;
     width: auto; /* Auto default olarak ayarlanıyor, yazmasanda olur.*/
 }
 
@@ -59,14 +68,14 @@ body {
     color: #fff;
     text-transform: uppercase;
     backface-visibility: hidden; /* Fix for animation shaking */
-    margin-bottom: 40px;
+    margin-bottom: 6rem;
 }
 
 .heading-primary-main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
     animation-name: moveInLeft;
     animation-duration: 3s;
     animation-timing-function: ease-out;
@@ -81,9 +90,9 @@ body {
 
 .heading-primary-sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 400;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
     /*shortcut for animation elements*/
     animation: moveInRight 3s ease-out;
     animation-iteration-count: 2;
@@ -98,10 +107,10 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
     80% {
-        transform: translateX(20px);
+        transform: translateX(2rem);
     }
 
     100% {
@@ -113,10 +122,10 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
     80% {
-        transform: translateX(-20px);
+        transform: translateX(-2rem);
     }
 
     100% {
@@ -128,7 +137,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     100% {
@@ -147,25 +156,27 @@ veya transform'lar kullanmak overkill olur*/
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px; /*top bottom */
+    padding: 1.5rem 4rem; /*top bottom */
     /*padding with 4 variable -> top right bottom left*/
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
 
     /*animasyon yaratmanın 2. yolu sadece aşağıdakini eklemektir
     1.yolu zaten daha önce yaptık headerlarda ki bu daha karmaşık olanıydı*/
     transition: all 0.2s;
     position: relative; /*Pseudo element için gerekli*/
+    font-size: 1.6rem;
 }
 
 .btn:hover {
     transform: translateY(-3px);
     /*box-shadow: offsetx ,offsety ,blur, spread radius, color */
-    box-shadow: 0 5px 10px rgb(0,0,0,.2);
+    box-shadow: 0 1rem 2rem rgb(0,0,0,.2);
 }
 
 .btn:active {
     transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgb(0,0,0,.2);
 }
 
 .btn-white {
@@ -179,7 +190,7 @@ veya transform'lar kullanmak overkill olur*/
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
