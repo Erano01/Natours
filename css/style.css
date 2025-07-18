@@ -45,18 +45,18 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); /* Polygon belirtip image'i üçgen şekilde alttan kırpacağız*/
 }
 
-.logo-box {
+.header__logo-box {
     position: absolute; /* Absolute konumlandırma, header içinde logo-box'ı konumlandırmak için */
     top: 4rem;
     left: 4rem;
 }
 
-.logo {
+.header__logo {
     height: 3.5rem;
     width: auto; /* Auto default olarak ayarlanıyor, yazmasanda olur.*/
 }
 
-.text-box {
+.header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -71,7 +71,7 @@ body {
     margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
     display: block;
     font-size: 6rem;
     font-weight: 400;
@@ -88,7 +88,7 @@ body {
     */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
     font-size: 2rem;
     font-weight: 400;
@@ -179,7 +179,7 @@ veya transform'lar kullanmak overkill olur*/
     box-shadow: 0 .5rem 1rem rgb(0,0,0,.2);
 }
 
-.btn-white {
+.btn--white {
     background-color: #fff;
     color: #777;
 }
@@ -197,7 +197,7 @@ veya transform'lar kullanmak overkill olur*/
     z-index: -1; /*Z-index ile butonun arkasına alıyoruz*/
     transition: all .4s;
 }
-.btn-white::after {
+.btn--white::after {
     background-color: #fff;
 }
 
@@ -207,7 +207,7 @@ veya transform'lar kullanmak overkill olur*/
 }
 
 /*second animation button pop-up animation*/
-.btn-animated {
+.btn--animated {
     animation: moveInBottom .5s ease-out .75s;
     animation-fill-mode: backwards;
 }
