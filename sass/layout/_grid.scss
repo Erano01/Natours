@@ -1,7 +1,6 @@
 
 .row {
     max-width: $grid-width; //1140px
-    background-color: #eee;
     margin: 0 auto;
     
     //we select everything except last-child
@@ -15,7 +14,6 @@
     // $= -> end with
     //select clasifiers that starts with col-
     [class^="col-"] {
-        background-color: orangered;
         float: left;
 
         &:not(:last-child) {
