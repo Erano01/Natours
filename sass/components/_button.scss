@@ -1,0 +1,59 @@
+/*Butonu ortalamak gibi basit bir çözüm için absolute positioning
+veya transform'lar kullanmak overkill olur*/
+/* Çözüm:
+- Yukarıdaki text-box'a text-align: center ekledik 
+- .heading-primary'e margin-bottom: 60px; ekledik
+*/
+.btn {
+    &:link,
+    &:visited { 
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem; /*top bottom */
+        /*padding with 4 variable -> top right bottom left*/
+        display: inline-block;
+        border-radius: 10rem;
+
+        /*animasyon yaratmanın 2. yolu sadece aşağıdakini eklemektir
+        1.yolu zaten daha önce yaptık headerlarda ki bu daha karmaşık olanıydı*/
+        transition: all 0.2s;
+        position: relative; /*Pseudo element için gerekli*/
+        font-size: 1.6rem;
+    }
+    &:hover {
+        transform: translateY(-3px);
+        /*box-shadow: offsetx ,offsety ,blur, spread radius, color */
+        box-shadow: 0 1rem 2rem rgb($color-black,.2);
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgb($color-black,.2);
+    }
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+        &::after {
+            background-color: $color-white;
+        }
+    }
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; /*Z-index ile butonun arkasına alıyoruz*/
+        transition: all .4s;
+    }
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards;
+    }
+}

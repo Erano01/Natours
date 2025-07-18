@@ -1,204 +1,23 @@
 // npm run compile:sass (should be running in terminal))
 // npm install live-server -g
 // live-server (should be running in terminal)
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-$color-grey-dark: #777;
-$color-white: #fff;
-$color-black: #000;
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
 
-*,
-*::after,
-*::before { /* Universal Selector, for resetting */
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit; /* Box-sizing özelliğini tüm elementlere uygula */
-}
+@import "components/button";
+@import "layout/header";
+@import "pages/home";
 
-html {
-    /* css cascade özelliği kullanıyoruz, font-size diğer elementlerde kullanılacak.*/
-    /* 1rem = 16px (default browser settings - eğer isterse değiştirebilir), diğer elementlerde rem kullanılacak */
-    /* user origin'den gelen browser setting'leri kullanıyoruz*/
-    font-size: 62.5%; /* 10/16 = 0.625*/ 
-}
 
-body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    line-height: 1.7;
-    color: $color-grey-dark;
-    padding: 3rem;
-    box-sizing: border-box; 
-}
 
-.header {
-    height: 95vh;
-    background-image: 
-        linear-gradient(
-            to right bottom,
-            rgba($color-primary-light,0.8),
-            rgba($color-primary-dark,0.8)) ,
-        url('../img/hero.jpg');
-    background-size: cover;
-    background-position: top;
-    position: relative; /*Relative konumlandırma, logo-box için gerekli*/
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); /* Polygon belirtip image'i üçgen şekilde alttan kırpacağız*/
 
-    &__logo-box {
-        position: absolute; /* Absolute konumlandırma, header içinde logo-box'ı konumlandırmak için */
-        top: 4rem;
-        left: 4rem;
-    }
-    
-    &__logo {
-        height: 3.5rem;
-    }
 
-    &__text-box {
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
-    
-}
 
-.heading-primary {
-    color: $color-white;
-    text-transform: uppercase;
-    backface-visibility: hidden; /* Fix for animation shaking */
-    margin-bottom: 6rem;
 
-    &--main {
-        display: block;
-        font-size: 6rem;
-        font-weight: 400;
-        letter-spacing: 3.5rem;
-        animation-name: moveInLeft;
-        animation-duration: 3s;
-        animation-timing-function: ease-out;
-        animation-iteration-count: 2;
-        /* animation-iteration-count: 2;
-        animation-timing-function: ease-in-out;
-        animation-delay: 2s; */
-    }
-    &--sub {
-        display: block;
-        font-size: 2rem;
-        font-weight: 400;
-        letter-spacing: 1.75rem;
-        /*shortcut for animation elements*/
-        animation: moveInRight 3s ease-out;
-        animation-iteration-count: 2;
-        /* animation-name: moveInRight;
-        animation-duration: 3s;
-        animation-timing-function: ease-out; */
-    }
-}
-
-/* Animations for headers */
-@keyframes moveInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-10rem);
-    }
-    80% {
-        transform: translateX(2rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
-
-@keyframes moveInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(10rem);
-    }
-    80% {
-        transform: translateX(-2rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
-
-@keyframes moveInBottom {
-    0% {
-        opacity: 0;
-        transform: translateY(3rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-
-/*Butonu ortalamak gibi basit bir çözüm için absolute positioning
-veya transform'lar kullanmak overkill olur*/
-/* Çözüm:
-- Yukarıdaki text-box'a text-align: center ekledik 
-- .heading-primary'e margin-bottom: 60px; ekledik
-*/
-.btn {
-    &:link,
-    &:visited { 
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 1.5rem 4rem; /*top bottom */
-        /*padding with 4 variable -> top right bottom left*/
-        display: inline-block;
-        border-radius: 10rem;
-
-        /*animasyon yaratmanın 2. yolu sadece aşağıdakini eklemektir
-        1.yolu zaten daha önce yaptık headerlarda ki bu daha karmaşık olanıydı*/
-        transition: all 0.2s;
-        position: relative; /*Pseudo element için gerekli*/
-        font-size: 1.6rem;
-    }
-    &:hover {
-        transform: translateY(-3px);
-        /*box-shadow: offsetx ,offsety ,blur, spread radius, color */
-        box-shadow: 0 1rem 2rem rgb($color-black,.2);
-        &::after {
-            transform: scaleX(1.4) scaleY(1.6);
-            opacity: 0;
-        }
-    }
-    &:active {
-        transform: translateY(-1px);
-        box-shadow: 0 .5rem 1rem rgb($color-black,.2);
-    }
-    &--white {
-        background-color: $color-white;
-        color: $color-grey-dark;
-        &::after {
-            background-color: $color-white;
-        }
-    }
-    &::after {
-        content: "";
-        display: inline-block;
-        height: 100%;
-        width: 100%;
-        border-radius: 10rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1; /*Z-index ile butonun arkasına alıyoruz*/
-        transition: all .4s;
-    }
-    &--animated {
-        animation: moveInBottom .5s ease-out .75s;
-        animation-fill-mode: backwards;
-    }
-}
 
