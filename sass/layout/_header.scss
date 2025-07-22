@@ -11,6 +11,7 @@
     background-size: cover;
     background-position: top;
     position: relative; /*Relative konumlandırma, logo-box için gerekli*/
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); /* Polygon belirtip image'i üçgen şekilde alttan kırpacağız*/
 
     &__logo-box {
