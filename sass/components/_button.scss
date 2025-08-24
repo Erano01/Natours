@@ -5,6 +5,7 @@ veya transform'lar kullanmak overkill olur*/
 - .heading-primary'e margin-bottom: 60px; ekledik
 */
 .btn {
+    &,
     &:link,
     &:visited { 
         text-transform: uppercase;
@@ -19,6 +20,11 @@ veya transform'lar kullanmak overkill olur*/
         transition: all 0.2s;
         position: relative; /*Pseudo element için gerekli*/
         font-size: $default-font-size;
+
+        //Change for the <button> element
+        border: none;
+        cursor: pointer;
+
     }
     &:hover {
         transform: translateY(-3px);
@@ -29,7 +35,9 @@ veya transform'lar kullanmak overkill olur*/
             opacity: 0;
         }
     }
-    &:active {
+    &:active,
+    &:focus {
+        outline: none;
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgb($color-black,.2);
     }
