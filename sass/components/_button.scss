@@ -1,3 +1,6 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
 /*Butonu ortalamak gibi basit bir çözüm için absolute positioning
 veya transform'lar kullanmak overkill olur*/
 /* Çözüm:
